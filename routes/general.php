@@ -10,3 +10,8 @@ Route::group(
         Route::get('version', 'HealthCheckController@version');
     }
 );
+
+Route::group(['middleware' => 'web'], function (): void {
+    Route::get('api/documentation', '\L5Swagger\Http\Controllers\SwaggerController@api')
+        ->name('l5swagger.api');
+});

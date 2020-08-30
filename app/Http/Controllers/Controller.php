@@ -14,12 +14,6 @@ use Illuminate\Routing\Controller as BaseController;
  *     title="product-service"
  * )
  *
- * @OAS\SecurityScheme(
- *      securityScheme="bearerAuth",
- *      type="http",
- *      scheme="bearer"
- *  )
- *
  * @OA\Schema(
  *     schema="ValidationErrors",
  *         @OA\Property(
@@ -46,12 +40,12 @@ use Illuminate\Routing\Controller as BaseController;
  *         @OA\Property(
  *             property="first",
  *             type="string",
- *             example="http://product.localhost/v1/product?page=1",
+ *             example="http://product.local:81/v1/product?page=1",
  *         ),
  *         @OA\Property(
  *             property="last",
  *             type="string",
- *             example="http://product.localhost/v1/product?page=10",
+ *             example="http://product.local:81/v1/product?page=10",
  *         ),
  *         @OA\Property(
  *             property="prev",
@@ -61,7 +55,7 @@ use Illuminate\Routing\Controller as BaseController;
  *         @OA\Property(
  *             property="next",
  *             type="string",
- *             example="http://product.localhost/v1/product?page=2",
+ *             example="http://product.local:81/v1/product?page=2",
  *         ),
  * )
  *
@@ -85,7 +79,7 @@ use Illuminate\Routing\Controller as BaseController;
  *         @OA\Property(
  *             property="path",
  *             type="string",
- *             example="http://product.localhost/v1/product",
+ *             example="http://product.local:81/v1/product",
  *         ),
  *         @OA\Property(
  *             property="per_page",

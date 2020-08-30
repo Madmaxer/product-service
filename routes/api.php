@@ -17,8 +17,17 @@ $prefix = config('app.route_prefix') . '/v1';
 */
 
 Route::group(
-    ['prefix' => $prefix /*, 'middleware' => ['auth']*/],
+    ['prefix' => $prefix, 'middleware' => ['web', 'auth']],
     function (): void {
-        Route::get('/', 'v1\ProductController@index');
+        Route::post('/product', 'v1\ProductController@create');
+        Route::patch('/product/{product}', 'v1\ProductController@update');
+        Route::delete('/product/{product}', 'v1\ProductController@delete');
+    }
+);
+
+Route::group(
+    ['prefix' => $prefix],
+    function (): void {
+        Route::get('/product', 'v1\ProductController@read');
     }
 );

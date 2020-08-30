@@ -28,7 +28,7 @@ interface HealthCheckControllerContract
      *     tags={"healthcheck"},
      *     summary="Heartbeat",
      *     operationId="heartbeat",
-     *      @OA\Response(response=200, description="Empty response"),
+     *     @OA\Response(response=200, description="Empty response"),
      * )
      */
     public function heartbeat(): JsonResponse;
@@ -40,7 +40,7 @@ interface HealthCheckControllerContract
      *     summary="Version",
      *     description="Returns app version",
      *     operationId="version",
-     *      @OA\Response(response=200, description="Returns app version"),
+     *     @OA\Response(response=200, description="Returns app version"),
      * )
      */
     public function version(): JsonResponse;

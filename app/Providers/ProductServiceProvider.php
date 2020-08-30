@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\ProductConfiguration;
+use App\ProductConfigurationInterface;
 use Illuminate\Support\ServiceProvider;
 
 class ProductServiceProvider extends ServiceProvider
@@ -13,6 +15,10 @@ class ProductServiceProvider extends ServiceProvider
 
     public function register(): void
     {
+        $this->app->singleton(ProductConfigurationInterface::class, function () {
+            return new ProductConfiguration(config('products'));
+        });
+
         $this->mergeConfig();
     }
 
@@ -35,6 +41,6 @@ class ProductServiceProvider extends ServiceProvider
 
     private function getConfigPath(): string
     {
-        return __DIR__ . sprintf('/../config/%s.php', $this->projectName);
+        return __DIR__ . sprintf('/../../config/%s.php', $this->projectName);
     }
 }
