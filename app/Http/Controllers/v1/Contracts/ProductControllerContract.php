@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Tag(
@@ -62,21 +63,67 @@ interface ProductControllerContract
 
     /**
      * @OA\Get(
+     *     path="/api/v1/product/{productId}",
+     *     tags={"products"},
+     *     summary="Returns a product",
+     *     operationId="readProduct",
+     *     @OA\Parameter(
+     *         name="Accept",
+     *         in="header",
+     *         required=true,
+     *         example="application/json",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="productId",
+     *         in="path",
+     *         description="ID of product to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Product"),
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Invalid product"
+     *     ),
+     *     @OA\Response(response=406, description="Not Acceptable")
+     * )
+     */
+    public function read(Product $product): JsonResource;
+
+    /**
+     * @OA\Get(
      *     path="/api/v1/product",
      *     tags={"products"},
-     *     summary="Products list",
-     *     description="Returns products",
-     *     operationId="products",
+     *     summary="Returns a paginated list of products",
+     *     operationId="listProducts",
+     *     @OA\Parameter(
+     *         name="Accept",
+     *         in="header",
+     *         required=true,
+     *         example="application/json",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",
      *         @OA\JsonContent(ref="#/components/schemas/Product")
      *     ),
+     *     @OA\Response(response=406, description="Not Acceptable")
      * )
-     *
-     * @return AnonymousResourceCollection
      */
-    public function read(): AnonymousResourceCollection;
+    public function list(): AnonymousResourceCollection;
 
     /**
      * @OA\Patch(

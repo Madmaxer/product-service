@@ -59,9 +59,19 @@
                 "tags": [
                     "products"
                 ],
-                "summary": "Products list",
-                "description": "Returns products",
-                "operationId": "products",
+                "summary": "Returns a paginated list of products",
+                "operationId": "listProducts",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "application/json"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -72,6 +82,9 @@
                                 }
                             }
                         }
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
                     }
                 }
             },
@@ -117,6 +130,52 @@
             }
         },
         "/api/v1/product/{productId}": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Returns a product",
+                "operationId": "readProduct",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "application/json"
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "ID of product to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid product"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            },
             "delete": {
                 "tags": [
                     "products"

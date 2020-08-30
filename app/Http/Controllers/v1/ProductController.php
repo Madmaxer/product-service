@@ -10,6 +10,7 @@ use App\Product;
 use App\ProductConfigurationInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 
 class ProductController implements ProductControllerContract
@@ -31,7 +32,12 @@ class ProductController implements ProductControllerContract
         return response()->json($product, Response::HTTP_CREATED);
     }
 
-    public function read(): AnonymousResourceCollection
+    public function read(Product $product): JsonResource
+    {
+        return new ProductResource($product);
+    }
+
+    public function list(): AnonymousResourceCollection
     {
         return ProductResource::collection(Product::paginate($this->config->pageLimit()));
     }
