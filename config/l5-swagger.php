@@ -109,20 +109,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | API security definitions. Will be generated into documentation file.
-    |--------------------------------------------------------------------------
-    */
-    'security' => [
-        'bearer' => [ // Unique name of security
-            'type' => 'http',
-            'scheme' => 'bearer',
-            'bearerFormat' => 'JWT',
-            'in' => 'header',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Turn this off to remove swagger generation on production
     |--------------------------------------------------------------------------
     */
