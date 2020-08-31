@@ -26,8 +26,9 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => $prefix],
+    ['prefix' => $prefix, 'middleware' => ['web']],
     function (): void {
-        Route::get('/product', 'v1\ProductController@read');
+        Route::get('/product/{product}', 'v1\ProductController@read');
+        Route::get('/product', 'v1\ProductController@list');
     }
 );
